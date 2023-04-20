@@ -19,6 +19,7 @@ export class CarouselComponent implements OnInit{
     touchDrag: true,
     pullDrag: true,
     dots: false,
+    autoHeight: true,
     navSpeed: 700,
     navText: ['', ''],
     responsive: {
@@ -26,13 +27,13 @@ export class CarouselComponent implements OnInit{
         items: 1
       },
       400: {
-        items: 1
+        items: 2
       },
       740: {
-        items: 1
+        items: 3
       },
       940: {
-        items: 4
+        items: 3
       }
     },
     nav: true
