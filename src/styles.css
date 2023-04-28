@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+    font-family: 'chomsky';
+    src: url('./assets/chomsky.otf');
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+}

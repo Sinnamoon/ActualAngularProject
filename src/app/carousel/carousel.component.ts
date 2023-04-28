@@ -20,6 +20,7 @@ export class CarouselComponent implements OnInit{
     pullDrag: true,
     dots: false,
     autoHeight: true,
+    autoplay:true,
     navSpeed: 700,
     navText: ['', ''],
     responsive: {
@@ -37,5 +38,6 @@ export class CarouselComponent implements OnInit{
       }
     },
     nav: true
+   
   }
 }
