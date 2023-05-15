@@ -1,5 +1,6 @@
 import { Component, AfterViewInit } from '@angular/core';
 import * as L from 'leaflet';
+import data from '../carousel/vientianeTimesData';
 
 @Component({
   selector: 'app-map',
@@ -8,7 +9,8 @@ import * as L from 'leaflet';
 })
 export class MapComponent implements AfterViewInit {
   private map!: L.Map | L.LayerGroup<any>;
-
+  articles = data;
+  
   private initMap(): void {
     this.map = L.map('map', {
       center: [ 39.8282, -98.5795 ],
@@ -37,8 +39,17 @@ export class MapComponent implements AfterViewInit {
         iconAnchor: [12,40],
         popupAnchor: [0,-40]
       });
-    var markerLaos = L.marker([54.3781, -3], { icon: myIcon }).addTo(this.map);
-    markerLaos.bindPopup("<b>UK</b>").openPopup();
+    var markerUK = L.marker([54.3781, -3], { icon: myIcon }).addTo(this.map);
+    markerUK.bindPopup("<b>UK</b>").openPopup();
+
+    let popupContent = '';
+
+    this.articles.forEach((article, index) => {
+      const articleLink = `http://localhost:4200/article/${index}`;
+      popupContent += `<a href="${articleLink}">${article.title}</a><br>`;
+    });
+
+    markerLaos.bindPopup(popupContent).openPopup();
   }
 
   constructor() { }

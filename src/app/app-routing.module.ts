@@ -8,6 +8,7 @@ const routes: Routes = [
   { path: '', component: HomeComponent},
   { path: 'login', component: LoginComponent },
   { path: 'article', component: ArticleComponent },
+  { path: 'article/:id', component: ArticleComponent }
 ];
 
 

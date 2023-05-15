@@ -12,6 +12,7 @@ import { GetArticlePipe } from './get-article.pipe';
 import { GetImagePipe } from './get-image.pipe';
 import { ArticleComponent } from './article/article.component';
 import { HomeComponent } from './home/home.component';
+import { GetContentPipe } from './get-content.pipe';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { HomeComponent } from './home/home.component';
     GetImagePipe,
     ArticleComponent,
     HomeComponent,
+    GetContentPipe,
   ],
   imports: [
     BrowserModule,

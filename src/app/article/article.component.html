@@ -1,10 +1,20 @@
-<ng-container *ngFor="let article of articles; index as i">
-  <article>
-    <header>
-      <h1>{{ article.title }}</h1>
+<ng-container *ngIf="currentArticle; else notFound">
+  <article class="max-w-lg mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+    <header class="bg-gray-200 p-4">
+      <h1 class="text-xl font-bold">{{ currentArticle.title }}</h1>
     </header>
-    <div>
-      {{ article.article }}
+    <div class="p-4">
+      <p class="text-gray-700">{{ currentArticle.article }}</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
+      <img *ngFor="let photo of currentArticle.photos" [src]="photo" alt="Article Photo" class="rounded-lg">
     </div>
   </article>
 </ng-container>
+
+
+<ng-template #notFound>
+  <div>
+    404 Article Not Found
+  </div>
+</ng-template>

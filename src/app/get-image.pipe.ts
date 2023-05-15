@@ -1,4 +1,3 @@
-import { ConstantPool } from '@angular/compiler';
 import { Pipe, PipeTransform } from '@angular/core';
 import { Article } from 'src/api/models/ArticleAPIResponse';
 
