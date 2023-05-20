@@ -10,10 +10,9 @@ export class GetImagePipe implements PipeTransform {
       (element) => element.type === 'image'
     );
     if (found) {
-      console.log(found);
+      // console.log(found);
       return found.assets[0].file;
     }
-    console.log('no image found');
     return '';
   }
 }

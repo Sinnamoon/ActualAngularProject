@@ -13,6 +13,8 @@ import { GetImagePipe } from './get-image.pipe';
 import { ArticleComponent } from './article/article.component';
 import { HomeComponent } from './home/home.component';
 import { GetContentPipe } from './get-content.pipe';
+import { GuardianArticlesComponent } from './guardian-articles/guardian-articles.component';
+import { GetArticleContentAsStringPipe } from './get-article-content-as-string.pipe';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { GetContentPipe } from './get-content.pipe';
     ArticleComponent,
     HomeComponent,
     GetContentPipe,
+    GuardianArticlesComponent,
+    GetArticleContentAsStringPipe,
   ],
   imports: [
     BrowserModule,

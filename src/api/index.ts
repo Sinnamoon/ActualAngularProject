@@ -2,7 +2,7 @@ import axios from 'axios';
 import { SearchAPIResponse, Articles } from './models/SearchAPIResponse';
 import { ArticleAPIResponse, Article } from './models/ArticleAPIResponse';
 
-const API_KEY = '0cd5eb1d-c36e-45dd-8688-713c28e209ab';
+const API_KEY = '330ee8c9-caa7-4e2d-8eff-3e993de10920';
 
 export async function getArticles(): Promise<Articles[]> {
   return axios
