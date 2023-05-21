@@ -1,21 +1,19 @@
 <ng-container *ngIf="currentArticle; else notFound">
-    <article class="max-w-lg mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
-      <header class="bg-gray-200 p-4">
-        <h1 class="text-xl font-bold">{{ currentArticle.webTitle }}</h1>
-      </header>
-      <div class="p-4">
-        <p class="text-gray-700">{{ currentArticle.blocks.body[0].bodyTextSummary }}</p>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
-        <img *ngFor="let photo of currentArticle.photos" [src]="photo" alt="Article Photo" class="rounded-lg">
-      </div>
-    </article>
-  </ng-container>
-  
-  
-  <ng-template #notFound>
-    <div>
-      404 Article Not Found
+  <article class="max-w-lg mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+    <header class="bg-gray-200 p-4">
+      <h1 class="text-xl font-bold">{{ currentArticle.webTitle }}</h1>
+    </header>
+    <div class="p-4">
+      <p class="text-gray-700">{{ currentArticle.blocks.body[0].bodyTextSummary }}</p>
     </div>
-  </ng-template>
-  
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
+      <img [src]="(currentArticle | getImage) ? (currentArticle | getImage) : '../../assets/the-guardian-logo.jpg'">
+    </div>
+  </article>
+</ng-container>
+
+<ng-template #notFound>
+  <div>
+    404 Article Not Found
+  </div>
+</ng-template>

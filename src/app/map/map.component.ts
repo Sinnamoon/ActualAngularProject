@@ -1,6 +1,10 @@
 import { Component, AfterViewInit } from '@angular/core';
 import * as L from 'leaflet';
 import data from '../carousel/vientianeTimesData';
+import { GetArticlePipe } from '../get-article.pipe';
+import { Articles } from 'src/api/models/SearchAPIResponse';
+import { getArticles } from 'src/api';
+
 
 @Component({
   selector: 'app-map',
@@ -9,7 +13,13 @@ import data from '../carousel/vientianeTimesData';
 })
 export class MapComponent implements AfterViewInit {
   private map!: L.Map | L.LayerGroup<any>;
-  articles = data;
+  Laosarticles = data;
+  articles: Articles[] = [];
+  currentArticle: any;
+  private sub: any;
+  Articleid: any;
+  temp: Articles[] = [];
+  id: number | null = null;
   
   private initMap(): void {
     this.map = L.map('map', {
@@ -39,12 +49,38 @@ export class MapComponent implements AfterViewInit {
         iconAnchor: [12,40],
         popupAnchor: [0,-40]
       });
+
     var markerUK = L.marker([54.3781, -3], { icon: myIcon }).addTo(this.map);
-    markerUK.bindPopup("<b>UK</b>").openPopup();
+    let popupContentUK = '';
+
+getArticles()
+  .then((res) => {
+    this.temp = res;
+    
+    const getArticlePipe = new GetArticlePipe();
+    const getArticlePromises = this.temp.map((article) => {
+      const transformedArticle = getArticlePipe.transform(article);
+      return transformedArticle.toPromise();
+    });
+
+    return Promise.all(getArticlePromises);
+  })
+  .then((transformedArticles) => {
+    transformedArticles.forEach((articleData) => {
+      if (articleData && articleData.blocks && articleData.blocks.body && articleData.blocks.body[0]) {
+        const articleLink = `http://localhost:4200/guardianarticle/${articleData.blocks.body[0].id}`;
+        popupContentUK += `<a href="${articleLink}">${articleData.webTitle}</a><br>`;
+      }
+    });
+
+    markerUK.bindPopup(popupContentUK).openPopup();
+  });
+
+    
 
     let popupContent = '';
 
-    this.articles.forEach((article, index) => {
+    this.Laosarticles.forEach((article, index) => {
       const articleLink = `http://localhost:4200/article/${index}`;
       popupContent += `<a href="${articleLink}">${article.title}</a><br>`;
     });
